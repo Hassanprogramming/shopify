@@ -1,0 +1,42 @@
+{% extends 'store/main.html' %} {% block content %} {% load static %}
+<!--main section-->
+<section id="main">
+  <!--main content-->
+  {% for websites in website %}
+  <div class="main-text">
+    <h1>{{websites.title}}</h1>
+    <p>
+      {{websites.text}}
+    </p>
+  </div>
+  <!--main img-->
+  <div class="main-img">
+    <img src="{{websites.imageURL}}" alt="T-Shirts" />
+  </div>
+</section>
+{% endfor %}
+<section id="feature-product">
+  <!--heading-->
+  <h2>Feature Product</h2>
+  <!--box container-->
+  <div class="product-feature-img">
+    {% for product in products %}
+    <div class="feature-product-box">
+      <div class="product-feature-img">
+        <img src="{{product.imageURL}}" alt="" />
+      </div>
+      <div class="product-feature-text-container">
+        <div class="product-feature-text">
+          <strong>{{product.name}}</strong>
+          <span>${{product.price|floatformat:2}}</span>
+        </div>
+        <div class="cart-like">
+          <a href="#"><i data-product={{product.id}} data-action="add" class="fas fa-shopping-cart update-cart"></i></a>
+          <a href="#"><i class="far fa-heart"></i></a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

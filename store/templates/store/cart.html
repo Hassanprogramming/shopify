@@ -1,0 +1,60 @@
+{% extends 'store/main.html' %} {% block content %} {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/cart.css' %}" />
+  <body>
+    <div class="container">
+      <h1>Shopping Cart</h1>
+      <div class="cart">
+        <div class="products">
+          {% for item in items %}
+          <div class="product">
+            <img src="{{item.product.imageURL}}" />
+
+            <div class="product-info">
+              <h3 class="product-name">{{item.product.name}}</h3>
+
+              <h4 class="product-price">${{item.product.price|floatformat:2}}</h4>
+
+              <h4 class="product-offer">50%</h4>
+
+              <p class="product-quantity">quantity:{{item.quantity}}</p>
+              <p class="product-quantity">total:{{item.get_total}}</p>
+              <p class="product-add">
+                <i class="fa fa-add" aria-hidden="true"></i>
+
+                <a data-product={{item.product.id}} data-action="add" class="chg-quantity update-cart">Add</a>
+              </p>
+              <p class="product-remove">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+
+                <span data-product={{item.product.id}} data-action="remove" class="chg-quantity update-cart">Remove</span>
+              </p>
+              
+            </div>
+          </div>
+          {% endfor %}
+
+          
+
+        <div class="cart-total">
+          <p>
+            <span>Total Price</span>
+            <span>${{order.get_cart_total|floatformat:2}}</span>
+          </p>
+
+          <p>
+            <span>Number of Items</span>
+            <span>{{order.get_cart_items}}</span>
+          </p>
+
+          <p>
+            <span>You Save</span>
+
+            <span>$ 1,000</span>
+          </p>
+
+          <a href="{% url 'checkout' %}">Proceed to Checkout</a>
+        </div>
+      </div>
+    </div>
+  </body>
+{% endblock %}

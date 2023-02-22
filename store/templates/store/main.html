@@ -1,0 +1,170 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="text/javascript">
+      var user = "{{request.user}}";
+      function getToken(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== "") {
+          const cookies = document.cookie.split(";");
+          for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === name + "=") {
+              cookieValue = decodeURIComponent(
+                cookie.substring(name.length + 1)
+              );
+              break;
+            }
+          }
+        }
+        return cookieValue;
+      }
+      var csrftoken = getToken("csrftoken");
+
+
+      function getCookie(name) {
+        // Splite cookie string and get all individual name=value pairs in an array
+        var cookieArr = document.cookie.split(";");
+
+        // Loop through the array elements
+        for(var i = 0; i < cookieArr.length; i++) {
+          var cookiePair = cookieArr[i].split("=");
+
+          /* removing whitespace at the begining of the cookie name and compare it with the given string */
+          if(name == cookiePair[0].trim()) {
+            //Decode the cookie value and return
+            return decodeURIComponent(cookiePair[1]);
+          }
+        }
+
+        //return null if not found
+        return null;
+      }
+      
+      var cart = JSON.parse(getCookie('cart'))
+      if(cart == undefined){
+        cart = {}
+        console.log('Cart was created!')
+        document.cookie = 'cart' + JSON.stringify(cart) + ";domain=;path=/"
+      }
+
+      console.log('Cart:', cart)
+    </script>
+    <title>Online Shop</title>
+    <!-- stylesheet-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
+    <!-- fav-icon-->
+    <link rel="shortcut icon" href="{% static 'image/images/fav-icon.png' %}" />
+    <!-- using-font Awesome-->
+    <script
+      src="https://kit.fontawesome.com/4b96d300fe.js"
+      crossorigin="anonymous"
+    ></script>
+    <!--poppins font family-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- navigation-bar-->
+    <nav class="navigation">
+      <!-- logo-->
+      <a href="#" class="logo">logo</a>
+      <!--menu-btn-->
+      <!--<input type="checkbox" class="menu-btn" id="menu-btn">
+      <lable for="menu-btn" class="menu-icon">
+      </lable>-->
+      <!-- menu-->
+      <ul class="menu">
+        <li><a href="{% url 'store' %}" class="active">Home</a></li>
+        <li><a href="{% url 'shop' %}">Shop</a></li>
+        <li><a href="{% url 'category' %}">Products</a></li>
+        <li><a href="{% url 'News' %}">News</a></li>
+        <li><a href="{% url 'about us' %}">Contact</a></li>
+        <!--<li><a href="#">login</a></li>
+        <li><a href="#">logout</a></li>-->
+      </ul>
+      <!-- right-->
+      <div class="right-elements">
+        <!-- search-->
+        <a href="{% url 'search' %}" class="search">
+          <i class="fas fa-search"></i>
+        </a>
+        <!-- cart-->
+        <a href="{% url 'cart' %}" class="cart">
+          <p class="HHHH">{{cartItems}}</p>
+          <i class="fas fa-shopping-bag"></i>
+        </a>
+        <!-- user-->
+        <a href="{% url 'login' %}" class="user">
+          <i class="fas fa-user"></i>
+        </a>
+        <!--logout-->
+        <a href="#" class="user">
+          <i class="fa fa-sign-out" aria-hidden="true"></i>
+        </a>
+      </div>
+    </nav>
+    <!--navigation end-->
+
+    {% block content %} {% endblock %}
+
+    <!--footer-->
+    <footer>
+      <div class="footer-container">
+        <!--logo container-->
+        <div class="footer logo">Logo</div>
+        <div class="footer-social">
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+        <!--footer menu-->
+        <div class="footer-menu">
+          <!--footer menu box-->
+          <div class="footer-menu-box">
+            <strong>Product</strong>
+            <ul>
+              <li><a href="{% url 'store' %}">Home</a></li>
+              <li><a href="{% url 'about us' %}">About us</a></li>
+              <li><a href="{% url 'shop' %}">Shop</a></li>
+            </ul>
+          </div>
+        </div>
+        <!--footer menu box-->
+        <div class="footer-menu-box">
+          <strong>Product</strong>
+          <ul>
+            <li><a href="{% url 'News' %}">News</a></li>
+            <li><a href="#">Kids clothes</a></li>
+            <li><a href="#"> New Shoes</a></li>
+          </ul>
+        </div>
+        <!--footer menu box-->
+        <div class="footer-menu-box">
+          <strong>Product</strong>
+          <ul>
+            <li><a href="#">New clothes</a></li>
+            <li><a href="#">Kids clothes</a></li>
+            <li><a href="#"> New Shoes</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+  </body>
+</html>

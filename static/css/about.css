@@ -1,0 +1,119 @@
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+
+.about {
+    background: url() no-repeat;
+    background-size: 55%;
+    background-color: white;
+    overflow: hidden;
+    padding: 100px 0;
+}
+
+.inner-section {
+    width: 55%;
+    float: right;
+    background-color: #b0abab;
+    padding: 140px;
+    box-shadow: 12px 12px 8px black;
+}
+
+.inner-section h1 {
+    margin-bottom: 30px;
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.text {
+    font-size: 20px;
+    color: #545454;
+    line-height: 25px;
+    text-align: justify;
+    margin-bottom: 40px;
+}
+
+.skills button {
+    font-size: 22px;
+    text-align: center;
+    letter-spacing: 2px;
+    border: none;
+    border-radius: 20px;
+    padding: 8px;
+    width: 200px;
+    background-color: #d04747;
+    color: white;
+    cursor: pointer;
+}
+
+.skills button:hover {
+    transition: 2s;
+    background-color: #ecf5f5;
+    color: #be6c6b;
+}
+
+@media screen and (max-width:120px) {
+    .inner-section {
+        padding: 80px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .about {
+        background-size: 100%;
+        padding: 100px 40px;
+    }
+}
+
+.inner-section {
+    width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+    .about {
+        padding: 0%;
+    }
+
+    .inner-section {
+        padding: 60px;
+    }
+
+    .skills button {
+        font-size: 19px;
+        padding: 5px;
+        width: 160px;
+    }
+}
+.footer-social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-social a {
+    margin: 0px 6px;
+    border-radius: 50%;
+    color: #212121;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-social a:hover {
+    background-color: #cf2728;
+    color: white;
+    transition: all ease 0.3s;
+}

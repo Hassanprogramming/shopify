@@ -1,0 +1,121 @@
+{% extends 'store/main.html' %} {% block content %} {% load static %} 
+    <!--main section-->
+    <section id="main">
+        <!--main content-->
+        {% for websites in website %}
+        <div class="main-text">
+          <span>{{websites.header_title}}</span>
+          <h1>{{websites.title}}</h1>
+          <p>
+            {{websites.text}}
+          </p>
+          <a href="{% url 'shop' %}">Shop Now</a>
+        </div>
+        <!--main img-->
+        <div class="main-img">
+          <img src="/static/images/{{websites.image}}" alt="T-Shirts" />
+        </div>
+      </section>
+      {% endfor %}
+      <!--main section end-->
+  
+      <!--category-->
+      <section id="category">
+        <!--heading-->
+        <h2 class="h2">Categories</h2>
+        <!--box container-->
+        <div class="category-container">
+          <!--box 1-->
+          <a href="#" class="category-box">
+            <img src="{% static 'images/c-1.png' %}" alt="category" />
+            <span>T-Shirts</span>
+          </a>
+          <!--box 2-->
+          <a href="#" class="category-box">
+            <img src="{% static 'images/c-2.png' %}" alt="category" />
+            <span>pants</span>
+          </a>
+          <!--box 3-->
+          <a href="#" class="category-box">
+            <img src="{% static 'images/c-3.png' %}" alt="category" />
+            <span>Shirts</span>
+          </a>
+          <!--box 4-->
+          <a href="#" class="category-box">
+            <img src="{% static 'images/c-4.png' %}" alt="category" />
+            <span>Shoes</span>
+          </a>
+        </div>
+      </section>
+      <!--category end-->
+  
+      <!--feature products-->
+      <section id="feature-product">
+        <!--heading-->
+        <h2>Feature Product</h2>
+        <!--box container-->
+        <div class="product-feature-img">
+          {% for product in products %}
+          <div class="feature-product-box">
+            <div class="product-feature-img">
+              <img src="{{product.imageURL}}" alt="" />
+            </div>
+            <div class="product-feature-text-container">
+              <div class="product-feature-text">
+                <strong>{{product.name}}</strong>
+                <span>${{product.price|floatformat:2}}</span>
+              </div>
+              <div class="cart-like">
+                <a href="#"><i data-product={{product.id}} data-action="add" class="fas fa-shopping-cart update-cart"></i></a>
+                <a href="#"><i class="far fa-heart"></i></a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </section>
+      <!--feature product end-->
+  
+      <!--banner-->
+      <section id="banner">
+        <!--text-->
+        <div class="banner-text">
+          <strong>Beautifull Shoes</strong>
+          <span>From $300</span>
+          <p>Long Lasting And Comfortable to use. This is the only For you.</p>
+          <a href="#">Shop Now</a>
+        </div>
+        <!--img-->
+        <div class="banner-img">
+          <img src="{% static 'images/banner.png' %}" alt="Banner" />
+        </div>
+      </section>
+      <!--banner end-->
+  
+      <!--feature products-->
+      <section id="feature-product">
+        <!--heading-->
+        <h2>Feature Product</h2>
+        <!--box container-->
+        <div class="product-feature-img">
+          {% for product in products %}
+          <div class="feature-product-box">
+            <div class="product-feature-img">
+              <img src="{{product.imageURL}}" alt="" />
+            </div>
+            <div class="product-feature-text-container">
+              <div class="product-feature-text">
+                <strong>{{product.name}}</strong>
+                <span>${{product.price|floatformat:2}}</span>
+              </div>
+              <div class="cart-like">
+                <a href="#"><i data-product={{product.id}} data-action="add" class="fas fa-shopping-cart update-cart"></i></a>
+                <a href="#"><i class="far fa-heart"></i></a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </section>
+      <!--feature product end-->
+  {% endblock %}
