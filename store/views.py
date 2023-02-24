@@ -11,7 +11,6 @@ from .forms import CreateUserForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Q
-from category.models import *
 # from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 def Search(request):
@@ -60,8 +59,6 @@ def logoutUser(request):
 def shop(request):
     data = cartData(request)
     cartItems = data['cartItems']
-    order = data['order']
-    items = data['items']
 
     website = Website.objects.all()
     products = Shop.objects.all()
@@ -100,14 +97,6 @@ def checkout(request):
     context = {'items': items, 'order': order, 'cartItems': cartItems}
     return render(request, 'store/checkout.html', context)
 
-def category(request):
-    data = cartData(request)
-    cartItems = data['cartItems']
-
-    products = CategoryProduct.objects.all()
-    context = {'products': products,
-               'cartItems': cartItems}
-    return render(request, 'category/category.html', context)
 
 def updateItem(request):
     data = json.loads(request.body)
