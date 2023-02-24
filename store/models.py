@@ -27,6 +27,7 @@ class Shop(models.Model):
     price = models.FloatField()
     digital = models.BooleanField(default=False, null=True, blank=False)
     image = models.ImageField(null=True, blank=True)
+    description = models.TextField(max_length=500, null=True)
 
     def __str__(self):
         return self.name
@@ -72,6 +73,8 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=7, decimal_places=2)
     digital = models.BooleanField(default=False, null=True, blank=False)
     image = models.ImageField(null=True, blank=True)
+    description = models.TextField(max_length=500, null=True)
+    luxury = models.BooleanField(default=False, null=True, blank=False )
 
     def __str__(self):
         return self.name

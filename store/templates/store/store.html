@@ -66,7 +66,7 @@
                 <span>${{product.price|floatformat:2}}</span>
               </div>
               <div class="cart-like">
-                <a href="#"><i data-product={{product.id}} data-action="add" class="fas fa-shopping-cart update-cart"></i></a>
+                <a href="{{product.id}}"><i class="fas fa-shopping-cart"></i></a>
                 <a href="#"><i class="far fa-heart"></i></a>
               </div>
             </div>
@@ -91,14 +91,14 @@
         </div>
       </section>
       <!--banner end-->
-  
+
       <!--feature products-->
       <section id="feature-product">
         <!--heading-->
         <h2>Feature Product</h2>
         <!--box container-->
         <div class="product-feature-img">
-          {% for product in products %}
+          {% for product in second_product %}
           <div class="feature-product-box">
             <div class="product-feature-img">
               <img src="{{product.imageURL}}" alt="" />
@@ -109,7 +109,7 @@
                 <span>${{product.price|floatformat:2}}</span>
               </div>
               <div class="cart-like">
-                <a href="#"><i data-product={{product.id}} data-action="add" class="fas fa-shopping-cart update-cart"></i></a>
+                <a href="{{product.id}}"><i class="fas fa-shopping-cart"></i></a>
                 <a href="#"><i class="far fa-heart"></i></a>
               </div>
             </div>

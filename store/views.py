@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 import json
 import datetime
@@ -62,8 +62,7 @@ def shop(request):
 
     website = Website.objects.all()
     products = Shop.objects.all()
-    context = {'products': products,
-               'cartItems': cartItems, 'website': website, 'order': order, 'items': items}
+    context = {'products': products,'website': website, 'cartItems': cartItems}
     return render(request, 'store/shop.html', context)
 
 
@@ -72,9 +71,9 @@ def store(request):
     cartItems = data['cartItems']
 
     website = Website.objects.all()
-    products = Product.objects.all()
-    context = {'products': products,
-               'cartItems': cartItems, 'website': website}
+    products = Product.objects.filter(luxury=False)
+    second_product = Product.objects.filter(luxury=True)
+    context = {'products': products,'website': website, 'cartItems': cartItems, 'second_product':second_product}
     return render(request, 'store/store.html', context)
 
 
@@ -123,6 +122,7 @@ def updateItem(request):
         orderItem.delete()
     return JsonResponse('Item was added', safe=False)
 
+# we can also use this dicoratore for csrf-token in here instead doing this in our html
 # @csrf_exempt
 
 
@@ -160,3 +160,13 @@ def processOrder(request):
 def about(request):
     context = {}
     return render(request, 'store/about.html', context)
+
+
+def post(request,pid):
+    #post = Product.objects.get(id=pid)
+    data = cartData(request)
+    cartItems = data['cartItems']
+
+    product = get_object_or_404(Product,pk=pid)
+    context = {'product':product, 'cartItems':cartItems}
+    return render(request, 'store/product.html', context)
