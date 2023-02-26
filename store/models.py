@@ -28,6 +28,11 @@ class Shop(models.Model):
     digital = models.BooleanField(default=False, null=True, blank=False)
     image = models.ImageField(null=True, blank=True)
     description = models.TextField(max_length=500, null=True)
+    luxury = models.BooleanField(default=False, null=True, blank=False )
+    luxury_1 = models.BooleanField(default=False, null=True, blank=False )
+    luxury_2 = models.BooleanField(default=False, null=True, blank=False )
+
+
 
     def __str__(self):
         return self.name

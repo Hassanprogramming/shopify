@@ -38,5 +38,71 @@
     </div>
     {% endfor %}
   </div>
+  <div class="second-product">
+   <h2>Feature Product</h2>
+   <div class="product-feature-img">
+    {% for product in lux %}
+    <div class="feature-product-box">
+      <div class="product-feature-img">
+        <img src="{{product.imageURL}}" alt="" />
+      </div>
+      <div class="product-feature-text-container">
+        <div class="product-feature-text">
+          <strong>{{product.name}}</strong>
+          <span>${{product.price|floatformat:2}}</span>
+        </div>
+        <div class="cart-like">
+          <a href="{{product.id}}"><i data-product={{product.id}} data-action="add" class="fas fa-shopping-cart update-cart"></i></a>
+          <a href="#"><i class="far fa-heart"></i></a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+   </div>
+  </div>
+  <div class="second-product">
+    <h2>Feature Product</h2>
+    <div class="product-feature-img">
+     {% for product in lux_1 %}
+     <div class="feature-product-box">
+       <div class="product-feature-img">
+         <img src="{{product.imageURL}}" alt="" />
+       </div>
+       <div class="product-feature-text-container">
+         <div class="product-feature-text">
+           <strong>{{product.name}}</strong>
+           <span>${{product.price|floatformat:2}}</span>
+         </div>
+         <div class="cart-like">
+           <a href="{{product.id}}"><i data-product={{product.id}} data-action="add" class="fas fa-shopping-cart update-cart"></i></a>
+           <a href="#"><i class="far fa-heart"></i></a>
+         </div>
+       </div>
+     </div>
+     {% endfor %}
+    </div>
+  </div>
+  <div class="second-product">
+    <h2>Feature Product</h2>
+    <div class="product-feature-img">
+     {% for product in lux_2 %}
+     <div class="feature-product-box">
+       <div class="product-feature-img">
+         <img src="{{product.imageURL}}" alt="" />
+       </div>
+       <div class="product-feature-text-container">
+         <div class="product-feature-text">
+           <strong>{{product.name}}</strong>
+           <span>${{product.price|floatformat:2}}</span>
+         </div>
+         <div class="cart-like">
+           <a href="{{product.id}}"><i data-product={{product.id}} data-action="add" class="fas fa-shopping-cart update-cart"></i></a>
+           <a href="#"><i class="far fa-heart"></i></a>
+         </div>
+       </div>
+     </div>
+     {% endfor %}
+    </div>
+   </div>
 </section>
 {% endblock %}

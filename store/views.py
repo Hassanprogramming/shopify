@@ -60,9 +60,12 @@ def shop(request):
     data = cartData(request)
     cartItems = data['cartItems']
 
+    lux_2 = Shop.objects.filter(luxury_2=True)
+    lux_1 = Shop.objects.filter(luxury_1=True)
+    lux = Shop.objects.filter(luxury=True)
     website = Website.objects.all()
-    products = Shop.objects.all()
-    context = {'products': products,'website': website, 'cartItems': cartItems}
+    products = Shop.objects.filter(luxury=False, luxury_1=False, luxury_2=False)
+    context = {'products': products,'website': website, 'cartItems': cartItems, 'lux':lux, 'lux_1':lux_1, 'lux_2':lux_2}
     return render(request, 'store/shop.html', context)
 
 

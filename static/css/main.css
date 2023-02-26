@@ -338,6 +338,10 @@ main-text p {
     transition: all ease 0.3s;
 }
 
+.second-product{
+    margin-top: 40px;
+}
+
 /*banner*/
 #banner {
     border: 1px solid rgba(235, 235, 235);
